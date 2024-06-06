@@ -1,9 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from "react-dom/client";
+import data from "./Utils/data.json";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
-
-const test = <h1>HI</h1>
 
 const Header = () => (
 <div className="header">
@@ -26,15 +26,20 @@ const Header = () => (
 </div>
 
 );
-    
-const RestaurantCard = () => {
+  
+const resData = data;
+
+const RestaurantCard = (props) => {
+    const {name, cuisines, cloudinaryImageId, costForTwo, avgRating} = props.resData.info;
 return (
     <div className="card">
-        <img alt="food" src="https://res.cloudinary.com/the-infatuation/image/upload/c_fill,w_3840,ar_4:3,g_center,f_auto/NYC_Principe_Interior_KatePrevite_00012_iuzxox"/>
-    <h2>Hyderabadi biriyani</h2>
-    <h3>Indian, Mexican, Chinese</h3>
-    <h4>4.3 Stars</h4>
-    <i class="fa-solid fa-indian-rupee-sign"></i> <h5>  150 per person</h5>
+    <img alt="food" src={'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/'+cloudinaryImageId}/>
+    <h3>{name}</h3>
+    <div className="rating">
+    <h4> {<i className="fa fa-star"></i>} {avgRating} </h4> 
+     <h4>{costForTwo}</h4>
+    </div>
+    {cuisines.join(', ')}
     </div>
 )
 };
@@ -43,22 +48,16 @@ const Body = () => {
         <div className="body">
             <div className="searchbar">
             <input type="text" placeholder="Search.." name="search"/>
-            <button type="submit"><i class="fa fa-search"></i></button>
+            <button type="submit">{<i className="fa fa-search"></i>}</button>
             </div>
             <div className="res-container">
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
+            {
+                resData.map((restaurant) =>(
+                    <RestaurantCard key={restaurant.info.id} resData={restaurant}/>
+                )
+                )
+
+            }
                
 
             </div>
