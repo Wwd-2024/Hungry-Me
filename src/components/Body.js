@@ -23,11 +23,9 @@ const Body = () => {
     }
 
    
-    if(listData.length === 0){
-        return <Shimmer />
-    }
-
-    return (
+   
+    // conditional rendering
+    return listData.length === 0 ? <Shimmer/> :(
         <div className="body">
             <div className="toolbar">
             <button onClick={()=> {

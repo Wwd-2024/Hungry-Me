@@ -1,7 +1,14 @@
 import { LOGO_URL } from "../utils/constants";
 
-const Header = () => (
-    <div className="header">
+import {useState} from 'react';
+
+const Header = () => {
+
+
+
+    const [loginBtn, setLoginBtn] = useState("Login");
+
+   return ( <div className="header">
     <div >
         <img className="logo" src={LOGO_URL}/>
     </div>
@@ -16,10 +23,17 @@ const Header = () => (
             <li>
                 Cart
             </li>
+            <li onClick={()=> {
+
+            loginBtn ==='Login' ? setLoginBtn("Logout"):setLoginBtn("Login");
+
+            }}>
+                {loginBtn}
+            </li>
         </ul>
     </div>
-    </div>
+    </div>)
     
-    );
+};
   
     export default Header;
