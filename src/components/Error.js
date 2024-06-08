@@ -12,7 +12,7 @@ const Error = () => {
             </h2>
             <h4> Whyyyyyyy ?????</h4>
             <h4> Because</h4>
-            <h3> {error.data.split(":")[1]}</h3>
+            <h3> {error.data}</h3>
          </div>
     )
 

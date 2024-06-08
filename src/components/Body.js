@@ -3,6 +3,7 @@ import RestaurantCard from "./RestaurantCard";
 import {useState, useEffect} from 'react';
 import { SWIGGY_DATA } from "../utils/constants";
 
+
 const Body = () => {
 
     const [listData, setListData] = useState([]);
@@ -47,7 +48,7 @@ const Body = () => {
             <div className="res-container">
             {
                 listDataCopy.map((restaurant) => (
-                    <RestaurantCard key={restaurant.info.id} resData={restaurant}/>
+                   <RestaurantCard key={restaurant.info.id} resData={restaurant}/>
                 )
                 )
             }
