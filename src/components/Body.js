@@ -4,7 +4,9 @@ import {useState, useEffect} from 'react';
 
 const Body = () => {
 
-    let [listData, setListData] = useState([]);
+    const [listData, setListData] = useState([]);
+    const [searchText, setSearchText] =  useState("");
+    const [listDataCopy, setListDataCopy] = useState([]);
 
     useEffect(()=> {
         fetchData();
@@ -17,9 +19,10 @@ const Body = () => {
 
         const json =  await liveData.json();
 
-         const newResList  = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        const newData = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
 
-        setListData(newResList);
+        setListData(newData);
+        setListDataCopy(newData);
     }
 
    
@@ -32,18 +35,23 @@ const Body = () => {
             const filteredData = listData.filter(res=> res.info.avgRating > 4.3);
             setListData(filteredData);
            
-        }
-            
-            }>Top Rated Restaurants</button>
+        } }>Top Rated Restaurants</button>
             <div className="searchbar">
-            <input type="text" placeholder="Search.." name="search"/>
-            <button type="submit">{<i className="fa fa-search"></i>}</button>
+            <input type="text" placeholder="Search.."value ={searchText} name="search" onChange={(event)=>{
+                setSearchText(event.target.value)
+            }} />
+            <button onClick={()=>{
+             const newData =  listData.filter(res=> (res.info.name).toLowerCase().includes(searchText.toLowerCase()));
+             setListDataCopy(newData);
+            }
+            
+            }>{<i className="fa fa-search"></i>}</button>
             </div>
             </div>
            
             <div className="res-container">
             {
-                listData.map((restaurant) =>(
+                listDataCopy.map((restaurant) =>(
                     <RestaurantCard key={restaurant.info.id} resData={restaurant}/>
                 )
                 )
