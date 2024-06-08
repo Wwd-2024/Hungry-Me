@@ -136,3 +136,25 @@
    transition: transform 0.8s ease-in-out;
    transform: rotate(360deg);
 }
+
+.shimmer-container{
+   display: flex;
+   justify-content: center;
+   gap: 30px;
+   margin: 30px;
+   flex-wrap: wrap;
+}
+
+.shimmer-card{
+   width: 314px;
+   height: 350px;
+   border-radius: 20%;
+   background-color:#f4c6b636
+}
+
+.shimmer-toolbar{
+   display: flex;
+   align-items: center;
+   height: 100px;
+   gap:5%;
+}
