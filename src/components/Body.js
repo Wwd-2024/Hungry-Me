@@ -2,6 +2,7 @@ import Shimmer from "./Shimmer";
 import RestaurantCard from "./RestaurantCard";
 import {useState, useEffect} from 'react';
 import { SWIGGY_DATA } from "../utils/constants";
+import { useOnlineStatus } from '../utils/useOnlineStatus';
 
 
 const Body = () => {
@@ -14,6 +15,11 @@ const Body = () => {
         fetchData();
     },[]);  
 
+    const onlineStatus = useOnlineStatus();
+
+    if(onlineStatus=== false){
+        return <h1>You are offline!</h1>;
+    }
 
     const fetchData = async () => { 
         const liveData = await fetch(SWIGGY_DATA);
