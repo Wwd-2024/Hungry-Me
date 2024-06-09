@@ -1,9 +1,10 @@
+import UserClass from './UserClass'
+
 const About = () => {
 
 return (
     <div>
-        <h2>I'm an aspiring react developer </h2>
-       
+        <UserClass name={'Wonder Woman Divya'} mentor={'Akshay Saini'}/>
     </div>
 )
 
